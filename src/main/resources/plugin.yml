@@ -1,0 +1,10 @@
+name: kexMc
+version: '1.0-SNAPSHOT'
+main: kex.group.kexMc.KexMc
+api-version: '1.21'
+commands:
+  allow_join:
+    description: Allow a player to join the server
+    usage: /<command> <player>
+    permission: kexmc.command.allow_join
+    permission-message: You don't have permission to use this command
