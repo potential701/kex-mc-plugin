@@ -23,10 +23,9 @@ class AllowJoinCommand(private val plugin: KexMc) : CommandExecutor {
 
         val argPlayer = args[0]
         val config = Config(plugin, "config.yml")
+        val allowedPlayers = config.getConfig().getStringList("allowed_players")
 
-        @Suppress("UNCHECKED_CAST")
-        val allowedPlayers = config.getConfig().getList("allowed_players") as? MutableList<String>
-        allowedPlayers?.add(argPlayer)
+        allowedPlayers.add(argPlayer)
         config.getConfig().set("allowed_players", allowedPlayers)
         config.save()
 
