@@ -21,12 +21,16 @@ class AllowJoinCommand(private val plugin: KexMc) : CommandExecutor {
             return false
         }
 
+        val argPlayer = args[0]
         val config = Config(plugin, "config.yml")
-        val allowedPlayers = config.getConfig().getList("allowed_players")
-        config.getConfig().set("allowed_players", listOf(allowedPlayers, args[0]))
+
+        @Suppress("UNCHECKED_CAST")
+        val allowedPlayers = config.getConfig().getList("allowed_players") as? MutableList<String>
+        allowedPlayers?.add(argPlayer)
+        config.getConfig().set("allowed_players", allowedPlayers)
         config.save()
 
-        sender.sendMessage("Player ${args[0]} is now allowed to join the server.")
+        sender.sendMessage("Player $argPlayer is now allowed to join the server.")
 
         return true
     }
