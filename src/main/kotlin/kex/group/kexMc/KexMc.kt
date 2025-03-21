@@ -11,9 +11,7 @@ class KexMc : JavaPlugin() {
         // Plugin startup logic
         logger.info("KEX MC is enabled.")
 
-        val config = Config(this, "config.yml")
-        config.getConfig().set("allowed_players", ArrayList<String>())
-        config.save()
+        createAllowedPlayersConfig()
 
         PlayerJoinListener(this)
 
@@ -23,5 +21,14 @@ class KexMc : JavaPlugin() {
     override fun onDisable() {
         // Plugin shutdown logic
         logger.info("KEX MC is disabled.")
+    }
+
+    private fun createAllowedPlayersConfig(){
+        val config = Config(this, "config.yml")
+        val allowedPlayers = config.getConfig().getList("allowed_players")
+        if(allowedPlayers?.isEmpty() == false) return
+
+        config.getConfig().set("allowed_players", listOf<String>())
+        config.save()
     }
 }
