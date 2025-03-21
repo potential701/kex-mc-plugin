@@ -9,7 +9,10 @@ import org.bukkit.entity.Player
 
 class AllowJoinCommand(private val plugin: KexMc) : CommandExecutor {
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
-        if(sender !is Player){
+        val isAllowed = sender.isOp || sender !is Player
+
+        if(!isAllowed){
+            sender.sendMessage("You don't have permission to use this command.")
             return false
         }
 
