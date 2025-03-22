@@ -1,4 +1,4 @@
-name: kexMc
+name: kex-mc
 version: '1.0-SNAPSHOT'
 main: kex.group.kexMc.KexMc
 api-version: '1.21'
@@ -12,4 +12,9 @@ commands:
     description: Disallow a player to join the server
     usage: /<command> <player>
     permission: kexmc.command.disallow_join
+    permission-message: You don't have permission to use this command
+  landmark:
+    description: Manage Landmarks
+    usage: /<command> [get|set|remove|list] <name>
+    permission: kexmc.command.landmark
     permission-message: You don't have permission to use this command
