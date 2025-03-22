@@ -19,7 +19,7 @@ class PlayerJoinListener(private val plugin: KexMc) : Listener {
         val player: Player = event.player
 
         val config = Config(plugin, "config.yml")
-        val allowedPlayers = config.getConfig().getList("allowed_players") as List<*>
+        val allowedPlayers = config.getConfig().getStringList("allowed_players")
 
         if(!allowedPlayers.contains(player.player?.name)){
             player.ban("You are not allowed to join this server.", Instant.now(), "Bye")
